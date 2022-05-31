@@ -15,13 +15,12 @@ function Hero({ data }: Props) {
           <Image
             layout="fill"
             objectFit="cover"
-            height={680}
             alt={`Cover Image for ${data.headline}`}
             src={imageBuilder(data.image).height(680).url()}
           />
         }
       </div>
-      <div className="absolute top-[320px] mx-5 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-20 py-4 px-6 rounded-sm overflow-clip">
+      <div className="absolute top-[250px] mx-5 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-20 py-4 px-6 rounded-sm overflow-clip">
         <div className='text-5xl font-bold text-white drop-shadow-lg'>
           {data.headline &&
             <PortableText value={data.headline}></PortableText>

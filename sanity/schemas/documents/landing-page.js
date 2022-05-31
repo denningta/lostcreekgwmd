@@ -66,16 +66,11 @@ export default {
       ]
     },
     {
-      name: 'navItems',
+      name: 'navItemList',
       title: 'Navigation Items',
-      description: 'Navigation items to display on the site',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'navItem'}]
-        }
-      ]
+      description: 'The list of navigation items to display on the site',
+      type: 'reference',
+      to: [{type: 'navItemLists'}]
     }
   ]
 }

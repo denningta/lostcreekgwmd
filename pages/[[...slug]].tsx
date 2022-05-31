@@ -22,7 +22,7 @@ const LandingPage: NextPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout navItems={landingPage.navItems} siteSettings={siteSettings}>
-      <div className="pt-[60px] flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen">
         <Header headerData={landingPage.header} />
         <div className="grow">
           <Sections sections={landingPage.sections} postList={postList} />

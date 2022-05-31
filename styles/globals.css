@@ -20,7 +20,7 @@ a {
 
 @layer components {
   body {
-    @apply bg-neutral-900 text-white text-lg;
+    @apply bg-neutral-900 text-white;
   }
 }
 

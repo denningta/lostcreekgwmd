@@ -8,13 +8,34 @@ export default {
       title: 'Navigation Title',
       description: 'Ex: Home, About, etc.  The displayed text of the navigation item.',
       type: 'string',
-      validation: Rule => Rule.max(15).warning(`A nav item should not have more than 15 characters.`)
+      validation: Rule => Rule.max(50).warning(`A nav item should not have more than 50 characters.`)
     },
     {
-      name: 'icon',
-      title: 'Icon',
-      description: 'Icon selector from google fonts library https://fonts.google.com/icons?selected=Material+Icons',
-      type: 'string'
+      name: 'subNavItems',
+      title: 'Sub Navigation Items',
+      description: 'Navigation items that appear indented and/or expandable under this navigation item.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'string'
+            },
+            {
+              name: 'route',
+              title: 'Route',
+              type: 'reference',
+              to: [
+                {type: 'landingPage'},
+                {type: 'post'}
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       name: 'route',

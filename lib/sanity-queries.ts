@@ -50,7 +50,7 @@ export const landingPagesPathsQuery = groq`
 export type LandingPagesPathsGroq = [{ slug: string }];
 
 export const landingPageQuery = groq`
-    *[_type == 'landingPage' && slug.current == $slug]{
+  *[_type == 'landingPage' && slug.current == $slug]{
     ...,
     "footer": footer->{
       "navItems": navItems[]->{
@@ -79,9 +79,8 @@ export const landingPageQuery = groq`
         }
       }
     },
-    "navItems": navItems[]->{
+    "navItems": navItemList->navItems[]->{
       ...,
-      icon,
       title,
       "route": route->slug.current
     },
@@ -125,7 +124,7 @@ export const blogNavItems = groq`
 }[0].navItems
 `;
 
-export type NavItemGroq = Omit<Pick<NavItem, 'title' | 'icon'>, 'route'> & {
+export type NavItemGroq = Omit<Pick<NavItem, 'title' | 'subNavItems'>, 'route'> & {
   route: string;
 };
 

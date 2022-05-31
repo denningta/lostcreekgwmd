@@ -34,6 +34,7 @@ import genericHeader from './documents/sections/generic-header';
 import form from './documents/sections/form';
 import series from './documents/series';
 import introduction from './documents/sections/introduction';
+import navItemLists from './documents/nav-item-lists';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -51,6 +52,7 @@ export default createSchema({
     featureList,
     footer,
     navItems,
+    navItemLists,
     socialConnection,
     post,
     author,

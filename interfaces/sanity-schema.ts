@@ -15,7 +15,7 @@ import type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-} from 'sanity-codegen';
+} from "sanity-codegen";
 
 export type {
   SanityReference,
@@ -42,7 +42,7 @@ export type {
  *
  */
 export interface Route extends SanityDocument {
-  _type: 'route';
+  _type: "route";
 
   /**
    * Rote Title — `string`
@@ -56,7 +56,7 @@ export interface Route extends SanityDocument {
    *
    * Hyphenated name of the route.  "root" is a reserved keyword for the root of the domain (eg. https://domain.com)
    */
-  route?: { _type: 'route'; current: string };
+  route?: { _type: "route"; current: string };
 }
 
 /**
@@ -65,7 +65,7 @@ export interface Route extends SanityDocument {
  *
  */
 export interface LandingPage extends SanityDocument {
-  _type: 'landingPage';
+  _type: "landingPage";
 
   /**
    * Internal Title — `string`
@@ -86,7 +86,7 @@ export interface LandingPage extends SanityDocument {
    *
    * Intended route of the page.  "root" is a reserved keyword for the root of the domain.
    */
-  slug?: { _type: 'slug'; current: string };
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Header — `reference`
@@ -122,11 +122,11 @@ export interface LandingPage extends SanityDocument {
   footer?: SanityReference<Footer>;
 
   /**
-   * Navigation Items — `array`
+   * Navigation Items — `reference`
    *
-   * Navigation items to display on the site
+   * The list of navigation items to display on the site
    */
-  navItems?: Array<SanityKeyedReference<NavItem>>;
+  navItemList?: SanityReference<NavItemLists>;
 }
 
 /**
@@ -135,7 +135,7 @@ export interface LandingPage extends SanityDocument {
  *
  */
 export interface CallToAction extends SanityDocument {
-  _type: 'callToAction';
+  _type: "callToAction";
 
   /**
    * CTA Title — `string`
@@ -163,7 +163,7 @@ export interface CallToAction extends SanityDocument {
    *
    * define the style of the call-to-action
    */
-  style?: 'primary' | 'secondary' | 'email';
+  style?: "primary" | "secondary" | "email";
 
   /**
    * Link to Page — `pageLink`
@@ -179,7 +179,7 @@ export interface CallToAction extends SanityDocument {
  *
  */
 export interface Hero extends SanityDocument {
-  _type: 'hero';
+  _type: "hero";
 
   /**
    * Internal Title — `string`
@@ -208,7 +208,7 @@ export interface Hero extends SanityDocument {
    * The image or logo to be used in the hero section
    */
   image?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -228,7 +228,7 @@ export interface Hero extends SanityDocument {
  *
  */
 export interface FeatureSummary extends SanityDocument {
-  _type: 'featureSummary';
+  _type: "featureSummary";
 
   /**
    * Internal Title — `string`
@@ -271,7 +271,7 @@ export interface FeatureSummary extends SanityDocument {
    * Select an icon to display with the feature
    */
   icon?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -290,7 +290,7 @@ export interface FeatureSummary extends SanityDocument {
    * Visual description of the feature
    */
   image?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -303,7 +303,7 @@ export interface FeatureSummary extends SanityDocument {
  *
  */
 export interface FeatureList extends SanityDocument {
-  _type: 'featureList';
+  _type: "featureList";
 
   /**
    * Internal Title — `string`
@@ -360,7 +360,7 @@ export interface FeatureList extends SanityDocument {
        *
        */
       icon?: {
-        _type: 'image';
+        _type: "image";
         asset: SanityReference<SanityImageAsset>;
         crop?: SanityImageCrop;
         hotspot?: SanityImageHotspot;
@@ -375,7 +375,7 @@ export interface FeatureList extends SanityDocument {
  *
  */
 export interface Footer extends SanityDocument {
-  _type: 'footer';
+  _type: "footer";
 
   /**
    * Footer title — `string`
@@ -412,7 +412,7 @@ export interface Footer extends SanityDocument {
  *
  */
 export interface NavItem extends SanityDocument {
-  _type: 'navItem';
+  _type: "navItem";
 
   /**
    * Navigation Title — `string`
@@ -422,11 +422,27 @@ export interface NavItem extends SanityDocument {
   title?: string;
 
   /**
-   * Icon — `string`
+   * Sub Navigation Items — `array`
    *
-   * Icon selector from google fonts library https://fonts.google.com/icons?selected=Material+Icons
+   * Navigation items that appear indented and/or expandable under this navigation item.
    */
-  icon?: string;
+  subNavItems?: Array<
+    SanityKeyed<{
+      /**
+       * Title — `string`
+       *
+       *
+       */
+      title?: string;
+
+      /**
+       * Route — `reference`
+       *
+       *
+       */
+      route?: SanityReference<LandingPage | Post>;
+    }>
+  >;
 
   /**
    * Route — `reference`
@@ -437,12 +453,35 @@ export interface NavItem extends SanityDocument {
 }
 
 /**
+ * Navigation Item Lists
+ *
+ *
+ */
+export interface NavItemLists extends SanityDocument {
+  _type: "navItemLists";
+
+  /**
+   * List Title — `string`
+   *
+   *
+   */
+  title?: string;
+
+  /**
+   * Navigation Items — `array`
+   *
+   *
+   */
+  navItems?: Array<SanityKeyedReference<NavItem>>;
+}
+
+/**
  * Social Connections
  *
  *
  */
 export interface SocialConnection extends SanityDocument {
-  _type: 'socialConnection';
+  _type: "socialConnection";
 
   /**
    * Social Media Platform — `string`
@@ -472,7 +511,7 @@ export interface SocialConnection extends SanityDocument {
  *
  */
 export interface Post extends SanityDocument {
-  _type: 'post';
+  _type: "post";
 
   /**
    * Title — `string`
@@ -486,7 +525,7 @@ export interface Post extends SanityDocument {
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Author — `reference`
@@ -508,7 +547,7 @@ export interface Post extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -567,7 +606,7 @@ export interface Post extends SanityDocument {
  *
  */
 export interface Author extends SanityDocument {
-  _type: 'author';
+  _type: "author";
 
   /**
    * Name — `string`
@@ -581,7 +620,7 @@ export interface Author extends SanityDocument {
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Work Title — `string`
@@ -596,7 +635,7 @@ export interface Author extends SanityDocument {
    *
    */
   image?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -616,7 +655,7 @@ export interface Author extends SanityDocument {
  *
  */
 export interface Category extends SanityDocument {
-  _type: 'category';
+  _type: "category";
 
   /**
    * Title — `string`
@@ -639,7 +678,7 @@ export interface Category extends SanityDocument {
  *
  */
 export interface SiteSettings extends SanityDocument {
-  _type: 'siteSettings';
+  _type: "siteSettings";
 
   /**
    * Brand Name — `string`
@@ -654,7 +693,7 @@ export interface SiteSettings extends SanityDocument {
    * The brand icon for the site
    */
   icon?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -667,7 +706,7 @@ export interface SiteSettings extends SanityDocument {
  *
  */
 export interface CtaSection extends SanityDocument {
-  _type: 'ctaSection';
+  _type: "ctaSection";
 
   /**
    * Internal Title — `string`
@@ -704,7 +743,7 @@ export interface CtaSection extends SanityDocument {
  *
  */
 export interface Metrics extends SanityDocument {
-  _type: 'metrics';
+  _type: "metrics";
 
   /**
    * Internal Title — `string`
@@ -741,7 +780,7 @@ export interface Metrics extends SanityDocument {
    */
   metrics?: Array<
     SanityKeyed<{
-      _type: 'metric';
+      _type: "metric";
       /**
        * Metric Number — `string`
        *
@@ -765,7 +804,7 @@ export interface Metrics extends SanityDocument {
  *
  */
 export interface Testimonial extends SanityDocument {
-  _type: 'testimonial';
+  _type: "testimonial";
 
   /**
    * Attestant Name — `string`
@@ -787,7 +826,7 @@ export interface Testimonial extends SanityDocument {
    *
    */
   avatar?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -807,7 +846,7 @@ export interface Testimonial extends SanityDocument {
  *
  */
 export interface LogoCloud extends SanityDocument {
-  _type: 'logoCloud';
+  _type: "logoCloud";
 
   /**
    * Headline — `string`
@@ -823,7 +862,7 @@ export interface LogoCloud extends SanityDocument {
    */
   companies?: Array<
     SanityKeyed<{
-      _type: 'company';
+      _type: "company";
       /**
        * Company Name — `string`
        *
@@ -837,7 +876,7 @@ export interface LogoCloud extends SanityDocument {
        *
        */
       logo?: {
-        _type: 'image';
+        _type: "image";
         asset: SanityReference<SanityImageAsset>;
         crop?: SanityImageCrop;
         hotspot?: SanityImageHotspot;
@@ -859,7 +898,7 @@ export interface LogoCloud extends SanityDocument {
  *
  */
 export interface Team extends SanityDocument {
-  _type: 'team';
+  _type: "team";
 
   /**
    * Headline — `string`
@@ -889,7 +928,7 @@ export interface Team extends SanityDocument {
  *
  */
 export interface PostList extends SanityDocument {
-  _type: 'postList';
+  _type: "postList";
 
   /**
    * Internal Title — `string`
@@ -910,7 +949,7 @@ export interface PostList extends SanityDocument {
    *
    *
    */
-  slug?: { _type: 'slug'; current: string };
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Sub-headline — `string`
@@ -924,7 +963,7 @@ export interface PostList extends SanityDocument {
    *
    *
    */
-  listType?: 'latest' | 'featured' | 'custom';
+  listType?: "latest" | "featured" | "custom";
 
   /**
    * Custom Posts — `array`
@@ -940,7 +979,7 @@ export interface PostList extends SanityDocument {
  *
  */
 export interface TestimonialSection extends SanityDocument {
-  _type: 'testimonialSection';
+  _type: "testimonialSection";
 
   /**
    * Internal Title — `string`
@@ -954,7 +993,7 @@ export interface TestimonialSection extends SanityDocument {
    *
    *
    */
-  format?: 'single' | 'twoColumn' | 'sideScroll';
+  format?: "single" | "twoColumn" | "sideScroll";
 
   /**
    * Testimonials — `array`
@@ -970,7 +1009,7 @@ export interface TestimonialSection extends SanityDocument {
  *
  */
 export interface GenericHeader extends SanityDocument {
-  _type: 'genericHeader';
+  _type: "genericHeader";
 
   /**
    * Internal Title — `string`
@@ -1000,7 +1039,7 @@ export interface GenericHeader extends SanityDocument {
  *
  */
 export interface Form extends SanityDocument {
-  _type: 'form';
+  _type: "form";
 
   /**
    * Form Title — `string`
@@ -1014,7 +1053,7 @@ export interface Form extends SanityDocument {
    *
    * Select the form type
    */
-  type?: 'contact' | 'newsletter';
+  type?: "contact" | "newsletter";
 }
 
 /**
@@ -1023,7 +1062,7 @@ export interface Form extends SanityDocument {
  *
  */
 export interface Series extends SanityDocument {
-  _type: 'series';
+  _type: "series";
 
   /**
    * Series Title — `string`
@@ -1046,7 +1085,7 @@ export interface Series extends SanityDocument {
  *
  */
 export interface Introduction extends SanityDocument {
-  _type: 'introduction';
+  _type: "introduction";
 
   /**
    * Internal Title — `string`
@@ -1061,7 +1100,7 @@ export interface Introduction extends SanityDocument {
    *
    */
   image?: {
-    _type: 'image';
+    _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
@@ -1092,7 +1131,7 @@ export interface Introduction extends SanityDocument {
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
-      _type: 'image';
+      _type: "image";
       asset: SanityReference<SanityImageAsset>;
       crop?: SanityImageCrop;
       hotspot?: SanityImageHotspot;
@@ -1112,6 +1151,7 @@ export type Documents =
   | FeatureList
   | Footer
   | NavItem
+  | NavItemLists
   | SocialConnection
   | Post
   | Author

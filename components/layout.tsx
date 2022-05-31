@@ -1,5 +1,5 @@
 import { NavItemGroq, SiteSettingsGroq } from '../lib/sanity-queries';
-import Toolbar from './toolbar';
+import SideNav from './sideNav';
 
 interface Props {
   siteSettings: SiteSettingsGroq;
@@ -8,16 +8,13 @@ interface Props {
 }
 
 export default function Layout({ siteSettings, navItems, children }: Props) {
+
   return (
-    <>
-      <Toolbar
-        navItems={navItems}
-        brandName={siteSettings.name || 'BrandName'}
-        brandIcon={siteSettings.icon || 'Logo'}
-      />
-      <div id="main" className="absolute w-full min-h-screen">
+    <div className="flex">
+      <SideNav siteSettings={siteSettings} navItems={navItems} />
+      <div id="main" className="w-full min-h-screen">
         {children}
       </div>
-    </>
+    </div>
   );
 }
