@@ -7,6 +7,7 @@ import { BiTestTube } from 'react-icons/bi';
 import { FaChartBar, FaExternalLinkSquareAlt, FaChevronRight } from 'react-icons/fa';
 import { BsChatSquareQuoteFill, BsQuestionCircleFill } from 'react-icons/bs';
 import router from 'next/router';
+import SubNavItem from './subNavItem';
 
 interface Props {
   navItem: NavItemGroq;
@@ -26,20 +27,24 @@ function NavItem({ navItem, className = '' }: Props) {
   }
 
   const handleClick = () => {
-    console.log(`click ${navItem.subNavItems ? 'expand to show subnavitems' : 'link'}`);
     if (navItem.subNavItems) {
       setShowSubNavItems(!showSubNavItems);
     } else {
-      router.push(navItem.route === 'root' ? '/' : navItem.route);
+      let route: string = '';
+      navItem.routeType === 'post' 
+        ? route = 'blog/' + navItem.route 
+        : route = navItem.route;
+      router.push(navItem.route === 'root' ? '/' : route);
     }
   }
 
   return (
-      <div onClick={handleClick}>
-        <div
+      <div>
+        <div 
           className={`flex items-center cursor-pointer py-4 px-6 transition ease-in-out ${navItemHover ? 'bg-black bg-opacity-20 text-white' : 'text-gray-300'}`}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
+          onClick={handleClick}
         >
           <div className={`mr-4 w-[35px] transition ease-in-out ${navItemHover ? 'text-primary-500' : 'text-sidenav-300'}`}>
             <div className='flex justify-center items-center w-full h-full text-xl'>
@@ -65,7 +70,7 @@ function NavItem({ navItem, className = '' }: Props) {
         {navItem.subNavItems &&
           <div className={`transition-all ease-in-out ${showSubNavItems ? '' : 'h-1 hidden'}`}>
             {navItem.subNavItems.map(subNavItem => 
-              <div className='pl-12 pr-6 py-4'>{subNavItem.title}</div>
+              <SubNavItem title={subNavItem.title} route={subNavItem.route} key={subNavItem.title} />
             )}
           </div>
         }

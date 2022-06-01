@@ -82,7 +82,12 @@ export const landingPageQuery = groq`
     "navItems": navItemList->navItems[]->{
       ...,
       title,
-      "route": route->slug.current
+      "route": route->slug.current,
+      "routeType": route->_type,
+      "subNavItems": subNavItems[]{
+        ...,
+        "route": route->slug.current,
+      }[]
     },
     "sections": sections[]->{
       ...,
@@ -117,15 +122,26 @@ export type CallToActionGroq = Omit<CallToAction, 'route'> & {
 
 export const blogNavItems = groq`
   *[_type == 'landingPage' && slug.current == 'blog']{
-  navItems[]->{
-    ...,
-    "route": route->slug.current
-  }
+    "navItems": navItemList->navItems[]->{
+      ...,
+      title,
+      "route": route->slug.current,
+      "routeType": route->_type,
+      "subNavItems": subNavItems[]{
+        ...,
+        "route": route->slug.current,
+      }[]
+    },
 }[0].navItems
 `;
 
-export type NavItemGroq = Omit<Pick<NavItem, 'title' | 'subNavItems'>, 'route'> & {
+export type NavItemGroq = Omit<Pick<NavItem, 'title'>, 'route' | 'subNavItems'> & {
   route: string;
+  routeType: string;
+  subNavItems: {
+    title: string;
+    route: string;
+  }[]
 };
 
 export type IconPickerGroq = {
