@@ -12,7 +12,7 @@ interface Props {
 function SideNav({ siteSettings, navItems }: Props) {
 
   return (
-    <div className='w-[400px] bg-sidenav-600 select-none'>
+    <div className='w-[300px] h-full select-none'>
     {siteSettings.icon && 
       <div className='m-5'>
         <Image

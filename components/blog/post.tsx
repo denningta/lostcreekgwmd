@@ -37,7 +37,7 @@ function Post({ post }: Props) {
   }
   return (
     <div className="w-full max-w-primary-col mx-auto">
-      <div className="w-full max-w-[800px] mt-[60px] px-3 sm:px-[30px] mx-auto mb-10">
+      <div className="w-full max-w-[800px] px-3 sm:px-[30px] mx-auto mb-10">
         <div className="pt-8 sm:pt-16">
           <div className="text-5xl font-extrabold">{post.title}</div>
           <Author post={post} />
