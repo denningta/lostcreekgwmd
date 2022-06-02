@@ -13,18 +13,18 @@ export default function Layout({ siteSettings, navItems, children }: Props) {
 
   return (
     <div className="flex">
-      <div className='flex lg:hidden fixed z-50 top-5 right-10'>
+      <div className='flex lg:hidden fixed z-50 top-5 right-5'>
         <button
-          className="h-[40px] w-[40px] flex flex-col items-center justify-center text-2xl cursor-pointer lg:hidden bg-white bg-opacity-20 rounded-lg backdrop-blur-lg"
+          className="h-[40px] w-[40px] flex flex-col items-center justify-center text-2xl cursor-pointer lg:hidden bg-white bg-opacity-30 rounded-lg backdrop-blur-lg"
           onClick={() => setShowNavMenu(!showNavMenu)}
         >
           <div
-            className={`h-[2px] w-[30px] bg-white ease-in-out duration-100 mb-[10px] ${
+            className={`h-[2px] w-[30px] bg-black bg-opacity-20 ease-in-out duration-100 mb-[10px] ${
               showNavMenu ? 'rotate-45 translate-y-[6px]' : 'rotate-0'
             }`}
           ></div>
           <div
-            className={`h-[2px] w-[30px] bg-white ease-in-out duration-200 ${
+            className={`h-[2px] w-[30px] bg-black bg-opacity-20 ease-in-out duration-200 ${
               showNavMenu ? '-rotate-45 -translate-y-[6px]' : 'rotate-0'
             }`}
           ></div>

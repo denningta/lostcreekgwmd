@@ -8,6 +8,7 @@ import Metrics from './metrics';
 import PostListSection from '../blog/postList';
 import ContactForm from '../forms/contactForm';
 import Introduction from './introduction';
+import NextMeeting from './next-meeting/nextMeeting';
 
 interface Props {
   sections: SectionGroq[];
@@ -73,6 +74,12 @@ function Sections({ sections, postList }: Props) {
             <Introduction data={section} />
           </div>
         );
+      case 'nextMeeting':
+        return (
+          <div key={section._id}>
+            <NextMeeting data={section} />
+          </div>
+        )
     }
   });
 

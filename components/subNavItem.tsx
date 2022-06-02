@@ -1,13 +1,15 @@
 import Link from "next/link";
+import router from "next/router";
 import { useState } from "react";
 import { NavItemGroq } from "../lib/sanity-queries";
 
 interface Props {
   title: string;
   route: string
+  routeType: string;
 }
 
-function SubNavItem({ title, route }: Props) {
+function SubNavItem({ title, route, routeType }: Props) {
   const [navItemHover, setNavItemHover] = useState(false);
   
   const onMouseEnter = () => {
@@ -18,9 +20,17 @@ function SubNavItem({ title, route }: Props) {
     setNavItemHover(false);
   }
 
+  const handleClick = () => {
+      let r: string = '';
+      routeType === 'post' 
+        ? r = '/blog/' + route 
+        : r = route;
+      router.push(route === 'root' ? '/' : r);
+  }
+
   return (
-    <Link href={`${route === 'root' ? '/' : route}`}>
       <div
+        onClick={handleClick}
         className={
           `pl-12 pr-6 py-4 cursor-pointer transition ease-in-out
           ${navItemHover ? 'bg-black bg-opacity-20' : ''}`
@@ -30,7 +40,6 @@ function SubNavItem({ title, route }: Props) {
       >
         {title}
       </div>
-    </Link>
   );
 }
 

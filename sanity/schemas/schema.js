@@ -34,7 +34,9 @@ import genericHeader from './documents/sections/generic-header';
 import form from './documents/sections/form';
 import series from './documents/series';
 import introduction from './documents/sections/introduction';
-import navItemLists from './documents/nav-item-lists';
+import navItemList from './documents/nav-item-list';
+import customHome from './documents/sections/custom-home';
+import nextMeeting from './documents/sections/next-meeting';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -52,7 +54,7 @@ export default createSchema({
     featureList,
     footer,
     navItems,
-    navItemLists,
+    navItemList,
     socialConnection,
     post,
     author,
@@ -69,6 +71,8 @@ export default createSchema({
     form,
     series,
     introduction,
+    customHome,
+    nextMeeting,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

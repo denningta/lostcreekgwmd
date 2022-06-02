@@ -13,6 +13,7 @@ import {
   LogoCloud,
   Metrics,
   NavItem,
+  NextMeeting,
   Post,
   PostList,
   SanityImageAsset,
@@ -87,10 +88,12 @@ export const landingPageQuery = groq`
       "subNavItems": subNavItems[]{
         ...,
         "route": route->slug.current,
+        "routeType": route->_type,
       }[]
     },
     "sections": sections[]->{
       ...,
+      "imageMetaData": image.asset->,
       callsToAction[]->{
         ...,
         "route": {
@@ -130,6 +133,7 @@ export const blogNavItems = groq`
       "subNavItems": subNavItems[]{
         ...,
         "route": route->slug.current,
+        "routeType": route->_type,
       }[]
     },
 }[0].navItems
@@ -141,6 +145,7 @@ export type NavItemGroq = Omit<Pick<NavItem, 'title'>, 'route' | 'subNavItems'> 
   subNavItems: {
     title: string;
     route: string;
+    routeType: string;
   }[]
 };
 
@@ -165,6 +170,7 @@ export type FeatureListGroq = FeatureList;
 
 export type FeatureSummaryGroq = Omit<FeatureSummary, 'callsToAction'> & {
   callsToAction: CallToActionGroq[];
+  imageMetaData: SanityImageAsset;
 };
 
 export type LogoCloudGroq = LogoCloud;
@@ -209,7 +215,8 @@ export type SectionGroq =
   | MetricsGroq
   | PostListSectionGroq
   | FormGroq
-  | Introduction;
+  | Introduction
+  | NextMeeting;
 
 export const postListPathsQuery = groq`
   *[_type == 'postList'] { "slug": slug.current }

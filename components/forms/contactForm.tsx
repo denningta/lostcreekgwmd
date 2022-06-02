@@ -67,7 +67,7 @@ function ContactForm() {
                 <input
                   id="fullname"
                   name="fullname"
-                  placeholder="Full name"
+                  placeholder="ex: John Smith"
                   autoComplete="name"
                   className="form-input"
                 />
@@ -91,7 +91,7 @@ function ContactForm() {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="How can I help?"
+                  placeholder="How can we help?"
                   autoComplete="none"
                   className="form-input"
                 />
@@ -115,7 +115,7 @@ function ContactForm() {
           )}
           {formState === 'submitted' && (
             <div className="w-full flex flex-col items-center justify-center">
-              Thank you for your message! I respond promptly.
+              Thank you for your message! We will respond promptly.
               <Link href={'/blog'}>
                 <button className="btn-primary mt-6">Keep Reading</button>
               </Link>

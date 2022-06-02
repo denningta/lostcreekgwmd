@@ -111,6 +111,8 @@ export interface LandingPage extends SanityDocument {
       | PostList
       | Form
       | Introduction
+      | CustomHome
+      | NextMeeting
     >
   >;
 
@@ -126,7 +128,7 @@ export interface LandingPage extends SanityDocument {
    *
    * The list of navigation items to display on the site
    */
-  navItemList?: SanityReference<NavItemLists>;
+  navItemList?: SanityReference<NavItemList>;
 }
 
 /**
@@ -453,12 +455,12 @@ export interface NavItem extends SanityDocument {
 }
 
 /**
- * Navigation Item Lists
+ * Navigation Item List
  *
  *
  */
-export interface NavItemLists extends SanityDocument {
-  _type: "navItemLists";
+export interface NavItemList extends SanityDocument {
+  _type: "navItemList";
 
   /**
    * List Title — `string`
@@ -1128,6 +1130,92 @@ export interface Introduction extends SanityDocument {
   introduction?: SimplePortableText;
 }
 
+/**
+ * Custom Home Section
+ *
+ *
+ */
+export interface CustomHome extends SanityDocument {
+  _type: "customHome";
+
+  /**
+   * Internal Title — `string`
+   *
+   *
+   */
+  title?: string;
+
+  /**
+   * Main Image — `image`
+   *
+   *
+   */
+  image?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+
+  /**
+   * Main page content — `array`
+   *
+   *
+   */
+  content?: Array<SanityKeyed<SanityBlock>>;
+}
+
+/**
+ * Next Meeting
+ *
+ *
+ */
+export interface NextMeeting extends SanityDocument {
+  _type: "nextMeeting";
+
+  /**
+   * Lost Creek GWMD Water Board Meeting Date — `datetime`
+   *
+   *
+   */
+  lostCreekDate?: string;
+
+  /**
+   * Location of the LCGWMD Water Board Meeting — `string`
+   *
+   *
+   */
+  lostCreekLocation?: string;
+
+  /**
+   * Additional information for the LCGWMD Water Board Meeting — `array`
+   *
+   *
+   */
+  lostCreekInfo?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Groundwater Commission Meeting Date — `datetime`
+   *
+   *
+   */
+  commissionDate?: string;
+
+  /**
+   * Groundwater Commission Meeting Location — `string`
+   *
+   *
+   */
+  commissionLocation?: string;
+
+  /**
+   * Additional information for the Groundwater Commission Meeting — `array`
+   *
+   *
+   */
+  commissionInfo?: Array<SanityKeyed<SanityBlock>>;
+}
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -1151,7 +1239,7 @@ export type Documents =
   | FeatureList
   | Footer
   | NavItem
-  | NavItemLists
+  | NavItemList
   | SocialConnection
   | Post
   | Author
@@ -1167,7 +1255,9 @@ export type Documents =
   | GenericHeader
   | Form
   | Series
-  | Introduction;
+  | Introduction
+  | CustomHome
+  | NextMeeting;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

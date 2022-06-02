@@ -53,6 +53,8 @@ export default {
           {type: 'postList'},
           {type: 'form'},
           {type: 'introduction'},
+          {type: 'customHome'},
+          {type: 'nextMeeting'}
         ]
       }]
     },
@@ -70,7 +72,7 @@ export default {
       title: 'Navigation Items',
       description: 'The list of navigation items to display on the site',
       type: 'reference',
-      to: [{type: 'navItemLists'}]
+      to: [{type: 'navItemList'}]
     }
   ]
 }

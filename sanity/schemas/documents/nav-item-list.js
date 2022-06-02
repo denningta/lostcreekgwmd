@@ -1,6 +1,6 @@
 export default {
-  name: 'navItemLists',
-  title: 'Navigation Item Lists',
+  name: 'navItemList',
+  title: 'Navigation Item List',
   type: 'document',
   fields: [
     {
