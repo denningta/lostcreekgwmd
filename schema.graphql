@@ -4,3 +4,13 @@ type ContactMessage {
   message: String
   createdAt: String
 }
+
+type RequestMessage {
+  name: String
+  email: String
+  phoneNumber: String
+  dateTime: String
+  permitNumber: String
+  comments: String
+  createdAt: String
+}

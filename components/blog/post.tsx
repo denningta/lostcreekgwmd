@@ -14,7 +14,6 @@ interface Props {
 }
 
 function Post({ post }: Props) {
-  console.log(post);
   const components = {
     types: {
       image: InlineImage,

@@ -9,6 +9,7 @@ import PostListSection from '../blog/postList';
 import ContactForm from '../forms/contactForm';
 import Introduction from './introduction';
 import NextMeeting from './next-meeting/nextMeeting';
+import RequestForm from '../forms/requestForm';
 
 interface Props {
   sections: SectionGroq[];
@@ -16,7 +17,6 @@ interface Props {
 }
 
 function Sections({ sections, postList }: Props) {
-  console.log(sections);
   if (!sections) return <></>;
   const sectionsElements = sections.map((section) => {
     switch (section._type) {
@@ -65,7 +65,8 @@ function Sections({ sections, postList }: Props) {
       case 'form':
         return (
           <div key={section._id}>
-            <ContactForm />
+            {section.type === 'contact' && <ContactForm />}
+            {section.type === 'request' && <RequestForm />}
           </div>
         );
       case 'introduction':

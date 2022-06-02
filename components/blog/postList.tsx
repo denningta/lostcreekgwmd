@@ -7,8 +7,6 @@ interface Props {
 }
 
 function PostListSection({ data, postList }: Props) {
-  console.log(data);
-  console.log(postList);
   let postListContent;
   switch (data.listType) {
     default: {

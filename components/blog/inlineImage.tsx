@@ -22,8 +22,6 @@ const InlineImage = ({
 }: Props) => {
   height = width / (+aspectRatio[0] / +aspectRatio[1]);
 
-  console.log(value.asset.metadata);
-
   width = value.asset.metadata.dimensions.width;
   height = value.asset.metadata.dimensions.height;
 

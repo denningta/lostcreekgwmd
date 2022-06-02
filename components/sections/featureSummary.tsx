@@ -9,7 +9,6 @@ interface Props {
 }
 
 function FeatureSummary({ data }: Props) {
-  console.log(data.imageMetaData);
   const width = data.imageMetaData.metadata.dimensions.width;
   const height = data.imageMetaData.metadata.dimensions.height;
 

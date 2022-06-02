@@ -1055,7 +1055,7 @@ export interface Form extends SanityDocument {
    *
    * Select the form type
    */
-  type?: "contact" | "newsletter";
+  type?: "contact" | "request" | "report";
 }
 
 /**

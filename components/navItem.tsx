@@ -32,11 +32,10 @@ function NavItem({ navItem, className = '' }: Props) {
       setShowSubNavItems(!showSubNavItems);
     } else {
       let route: string = '';
-      console.log(route);
       navItem.routeType === 'post' 
-        ? route = '/blog/' + navItem.route 
+        ? route = 'blog/' + navItem.route 
         : route = navItem.route;
-      router.push(navItem.route === 'root' ? '/' : route);
+      router.push(navItem.route === 'root' ? '/' : '/' + route);
     }
   }
 
@@ -71,7 +70,6 @@ function NavItem({ navItem, className = '' }: Props) {
         </div>
         {navItem.subNavItems &&
           <div className={`transition-all ease-in-out ${showSubNavItems ? '' : 'h-1 hidden'}`}>
-            {console.log(navItem.subNavItems)}
             {navItem.subNavItems.map(subNavItem => 
               <SubNavItem title={subNavItem.title} route={subNavItem.route} routeType={subNavItem.routeType} key={subNavItem.title} />
             )}

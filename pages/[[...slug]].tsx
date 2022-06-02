@@ -35,7 +35,6 @@ const LandingPage: NextPage = ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getLandingPagesPaths();
-  console.log(paths);
   return { paths, fallback: false };
 };
 

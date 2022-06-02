@@ -12,7 +12,7 @@ function GenericHeader({ data }: Props) {
         <div className="text-5xl font-extrabold">
           {data.headline && <PortableText value={data.headline} />}
         </div>
-        <div className="mt-8">
+        <div className="mt-8 mx-auto max-w-[500px]">
           {data.subHeadline && <PortableText value={data.subHeadline} />}
         </div>
       </div>

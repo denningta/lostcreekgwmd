@@ -15,7 +15,7 @@ export default {
       description: 'Select the form type',
       type: 'string',
       options: {
-        list: ['contact', 'newsletter']
+        list: ['contact', 'request', 'report']
       }
     }
   ]

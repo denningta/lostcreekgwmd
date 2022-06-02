@@ -7,7 +7,6 @@ interface Props {
 }
 
 function CallToAction({ data }: Props) {
-  console.log(data);
   let route = '';
   if (data.route.type === 'post') {
     route = '/blog/' + data.route.slug;
