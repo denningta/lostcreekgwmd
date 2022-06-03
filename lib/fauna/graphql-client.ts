@@ -19,7 +19,7 @@ export interface Message {
   createdAt: string;
 }
 
-export const createMessage = (newMessage: Message) => {
+export const createMessageOld = (newMessage: Message) => {
   const mutation = gql`
     mutation CreateContactMessage($input: ContactMessageInput!) {
       createContactMessage(data: $input) {

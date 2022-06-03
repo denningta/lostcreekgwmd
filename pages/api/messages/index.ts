@@ -1,7 +1,12 @@
+import { request } from 'https';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createMessage } from '../../../lib/fauna/graphql-client';
+import { createMessage } from '../../../lib/fauna/fql-queries';
+import { createMessageOld } from '../../../lib/fauna/graphql-client';
 
 type HandlerFunctions = { [key: string]: () => Promise<void> };
+
+const sanityToken = process.env.SANITY_TOKEN;
+const sanityProjectId = process.env.SANITY_PROJECT_ID;
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,16 +19,8 @@ export default async function handler(
 
   const handlers: HandlerFunctions = {
     POST: async () => {
-      const {
-        body: { name, email, message },
-      } = req;
-      const created = await createMessage({
-        name,
-        email,
-        message,
-        createdAt: new Date().toISOString(),
-      });
-
+      console.log(req.body);
+      const created = await createMessage(req.body);
       res.json(created);
     },
   };
