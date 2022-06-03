@@ -10,6 +10,7 @@ import ContactForm from '../forms/contactForm';
 import Introduction from './introduction';
 import NextMeeting from './next-meeting/nextMeeting';
 import RequestForm from '../forms/requestForm';
+import ReportForm from '../forms/reportForm';
 
 interface Props {
   sections: SectionGroq[];
@@ -65,8 +66,9 @@ function Sections({ sections, postList }: Props) {
       case 'form':
         return (
           <div key={section._id}>
-            {section.type === 'contact' && <ContactForm />}
-            {section.type === 'request' && <RequestForm />}
+            {section.type === 'contact' && <ContactForm data={section} />}
+            {section.type === 'request' && <RequestForm data={section} />}
+            {section.type === 'report' && <ReportForm data={section} />}
           </div>
         );
       case 'introduction':

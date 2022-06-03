@@ -17,6 +17,13 @@ export default {
       options: {
         list: ['contact', 'request', 'report']
       }
+    },
+    {
+      name: 'info',
+      title: 'Form Information',
+      description: 'Additional information regarding the form',
+      type: 'array',
+      of: [{ type: 'block'}]
     }
   ]
 }

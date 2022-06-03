@@ -25,7 +25,7 @@ function SubNavItem({ title, route, routeType }: Props) {
       routeType === 'post' 
         ? r = '/blog/' + route 
         : r = route;
-      router.push(route === 'root' ? '/' : r);
+      router.push(route === 'root' ? '/' : '/' + r);
   }
 
   return (

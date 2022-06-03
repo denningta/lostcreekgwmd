@@ -1056,6 +1056,13 @@ export interface Form extends SanityDocument {
    * Select the form type
    */
   type?: "contact" | "request" | "report";
+
+  /**
+   * Form Information — `array`
+   *
+   * Additional information regarding the form
+   */
+  info?: Array<SanityKeyed<SanityBlock>>;
 }
 
 /**
@@ -1216,6 +1223,124 @@ export interface NextMeeting extends SanityDocument {
   commissionInfo?: Array<SanityKeyed<SanityBlock>>;
 }
 
+/**
+ * Contact Message
+ *
+ *
+ */
+export interface ContactMessage extends SanityDocument {
+  _type: "contactMessage";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * Message — `text`
+   *
+   *
+   */
+  message?: string;
+}
+
+/**
+ * Request Message
+ *
+ *
+ */
+export interface RequestMessage extends SanityDocument {
+  _type: "requestMessage";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * Phone Number — `string`
+   *
+   *
+   */
+  phoneNumber?: string;
+
+  /**
+   * Well Permit Number — `string`
+   *
+   *
+   */
+  permitNumber?: string;
+
+  /**
+   * Requested Date — `date`
+   *
+   *
+   */
+  requestedDate?: string;
+
+  /**
+   * Requested Time — `string`
+   *
+   *
+   */
+  requestedTime?: string;
+
+  /**
+   * Comments — `text`
+   *
+   *
+   */
+  comments?: string;
+}
+
+/**
+ * Violation Report Message
+ *
+ *
+ */
+export interface ReportMessage extends SanityDocument {
+  _type: "reportMessage";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * Message — `text`
+   *
+   *
+   */
+  message?: string;
+}
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -1257,7 +1382,10 @@ export type Documents =
   | Series
   | Introduction
   | CustomHome
-  | NextMeeting;
+  | NextMeeting
+  | ContactMessage
+  | RequestMessage
+  | ReportMessage;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

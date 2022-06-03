@@ -1,22 +1,18 @@
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 import { FormEvent, useState } from 'react';
-import { Form } from '../../interfaces/sanity-schema';
+import { BlockContent, Form } from '../../interfaces/sanity-schema';
 import Logo from '../logo';
 
 interface Props {
   data: Form;
 }
 
-function RequestForm({ data }: Props) {
+function ContactForm({ data }: Props) {
   const initial = {
-    name: '',
+    fullname: '',
     email: '',
-    phoneNumber: '',
-    date: '',
-    time: '',
-    permitNumber: '',
-    comments: '',
+    message: '',
   };
   const [values, setValues] = useState(initial);
   const [formState, setFormState] = useState('initial');
@@ -28,15 +24,11 @@ function RequestForm({ data }: Props) {
 
     const target = event.target as HTMLFormElement;
     if (target.validator.value !== '') return;
-    const requestMessage = {
-      _type: 'requestMessage',
+    const reportMessage = {
+      _type: 'reportMessage',
       name: target.fullname.value,
       email: target.email.value,
-      phoneNumber: target.phoneNumber.value,
-      permitNumber: target.permitNumber.value,
-      requestedDate: target.date.value,
-      requestedTime: target.time.value,
-      comments: target.comments.value,
+      message: target.message.value,
     };
 
     const response = await fetch('/api/messages', {
@@ -44,7 +36,7 @@ function RequestForm({ data }: Props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestMessage)
+      body: JSON.stringify(reportMessage),
     });
 
     if (!response.ok) {
@@ -65,9 +57,9 @@ function RequestForm({ data }: Props) {
   return (
     <div className="flex justify-center w-full max-w-primary-col mx-auto">
       <div className="w-full max-w-[800px] mx-auto">
-        <div className='portable-text mb-10'>
-          {data.info && <PortableText value={data.info} />}
-        </div>
+      <div className='portable-text mb-10'>
+        {data.info && <PortableText value={data.info} />}
+      </div>
         <div>
           {formState === 'initial' && (
             <form
@@ -79,7 +71,7 @@ function RequestForm({ data }: Props) {
               </div>
               <div>
                 <label htmlFor="fullname" className="form-label">
-                  Full name
+                  Your name
                 </label>
                 <input
                   id="fullname"
@@ -91,7 +83,7 @@ function RequestForm({ data }: Props) {
               </div>
               <div>
                 <label htmlFor="email" className="form-label">
-                  Email
+                  Your email
                 </label>
                 <input
                   id="email"
@@ -101,62 +93,14 @@ function RequestForm({ data }: Props) {
                   className="form-input"
                 />
               </div>
-              <div>
-                <label htmlFor="phoneNumber" className="form-label">
-                  Phone number
-                </label>
-                <input
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  placeholder="(XXX) XXX-XXX"
-                  autoComplete="phone"
-                  className="form-input"
-                />
-              </div>
-              <div>
-                <label htmlFor="permitNumber" className="form-label">
-                  Well Permit Number
-                </label>
-                <input
-                  id="permitNumber"
-                  name="permitNumber"
-                  placeholder=""
-                  className="form-input"
-                />
-                <a className="text-xs" href="https://dwr.state.co.us/Tools/WellPermits" target="_blank">I dont know my well permit number!</a>
-              </div>
-              <div>
-                <label htmlFor="date" className="form-label">
-                  Requested Date
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  name="date"
-                  placeholder=""
-                  className="form-input"
-                />
-              </div>
-              <div>
-                <label htmlFor="time" className="form-label">
-                  Requested Time
-                </label>
-                <input
-                  type="time"
-                  id="time"
-                  name="time"
-                  placeholder=""
-                  className="form-input"
-                />
-              </div>
               <div className="sm:col-span-2">
-                <label htmlFor="comments" className="form-label">
-                  Comments
+                <label htmlFor="description" className="form-label">
+                  Violation Description
                 </label>
                 <textarea
-                  id="comments"
-                  name="comments"
-                  placeholder="Ex: meeting location, gate codes, etc."
+                  id="message"
+                  name="message"
+                  placeholder="Describe a violation of groundwater rules and regulations."
                   autoComplete="none"
                   className="form-input"
                 />
@@ -192,4 +136,4 @@ function RequestForm({ data }: Props) {
   );
 }
 
-export default RequestForm;
+export default ContactForm;

@@ -1,8 +1,14 @@
+import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 import { FormEvent, useState } from 'react';
+import { Form } from '../../interfaces/sanity-schema';
 import Logo from '../logo';
 
-function ContactForm() {
+interface Props {
+  data: Form;
+}
+
+function ContactForm({ data }: Props) {
   const initial = {
     fullname: '',
     email: '',
@@ -18,7 +24,8 @@ function ContactForm() {
 
     const target = event.target as HTMLFormElement;
     if (target.validator.value !== '') return;
-    const result = {
+    const contactMessage = {
+      _type: 'contactMessage',
       name: target.fullname.value,
       email: target.email.value,
       message: target.message.value,
@@ -29,7 +36,7 @@ function ContactForm() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(result),
+      body: JSON.stringify(contactMessage),
     });
 
     if (!response.ok) {
@@ -48,8 +55,11 @@ function ContactForm() {
   };
 
   return (
-    <div className="flex justify-center w-full py-10 max-w-primary-col mx-auto">
+    <div className="flex justify-center w-full max-w-primary-col mx-auto">
       <div className="w-full max-w-[800px] mx-auto">
+        <div className='portable-text mb-10'>
+          {data.info && <PortableText value={data.info} />}
+        </div>
         <div>
           {formState === 'initial' && (
             <form
