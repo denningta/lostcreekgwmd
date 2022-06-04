@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { NavItemGroq } from '../lib/sanity-queries';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import Logo from './logo';
 import React from 'react';
 import NavMenu from './navMenu';
 import Link from 'next/link';
@@ -20,12 +19,7 @@ export default function Toolbar({ navItems, brandName }: Props) {
       <div className="flex w-full items-center max-w-primary-col p-4 ">
         <Link href={'/'}>
           <div className="flex justify-center items-center cursor-pointer">
-            <Logo
-              width={40}
-              height={40}
-              fill="#fff"
-              className="hover:animate-spin-slow"
-            />
+
             <div className="text-xl ml-3">{brandName}</div>
           </div>
         </Link>

@@ -19,7 +19,7 @@ export default async function handler(
     POST: async () => {
       console.log(req.body);
       // const created = await createMessage(req.body);
-      const documentCreated = await client.create(req.body).then((res) => console.log(res._id))
+      const documentCreated = await client.create(req.body).then((res) => res)
       res.json(documentCreated);
     },
   };

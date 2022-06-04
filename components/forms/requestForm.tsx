@@ -1,11 +1,12 @@
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 import { FormEvent, useState } from 'react';
-import { Form } from '../../interfaces/sanity-schema';
-import Logo from '../logo';
+import { FormGroq } from '../../lib/sanity-queries';
+import Image from 'next/image';
+import { imageBuilder } from '../../lib/sanity-client';
 
 interface Props {
-  data: Form;
+  data: FormGroq;
 }
 
 function RequestForm({ data }: Props) {
@@ -20,7 +21,6 @@ function RequestForm({ data }: Props) {
   };
   const [values, setValues] = useState(initial);
   const [formState, setFormState] = useState('initial');
-  formState === 'submitting';
 
   const submitMessage = async (event: FormEvent) => {
     event.preventDefault();
@@ -169,13 +169,17 @@ function RequestForm({ data }: Props) {
             </form>
           )}
           {formState === 'submitting' && (
-            <div className="w-full flex justify-center">
-              <Logo
-                width={80}
-                height={80}
-                fill="#fff"
-                className="animate-spin-slow duration-500"
-              />
+            <div className="w-full flex justify-center animate-bounce">
+              {data.siteSettings.secondaryIcon &&
+                <Image
+                  className="rounded-lg overflow-clip shadow-lg"
+                  layout='intrinsic'
+                  width={40}
+                  height={40}
+                  alt={`LC`}
+                  src={imageBuilder(data.siteSettings.secondaryIcon).width(40).height(40).url()}
+                />
+              }
             </div>
           )}
           {formState === 'submitted' && (

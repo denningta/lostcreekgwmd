@@ -100,6 +100,11 @@ export const landingPageQuery = groq`
           "slug": pageLink->slug.current,
           "type": pageLink->_type,
         }
+      },
+      _type == 'form' => {
+        "siteSettings": *[_type == 'siteSettings']{
+          ...
+        }[0]
       }
     }
 
@@ -204,7 +209,9 @@ export type FooterGroq = Omit<Footer, 'navItems' | 'socials'> & {
   socials: SocialConnection[];
 };
 
-export type FormGroq = Form;
+export type FormGroq = Form & {
+  siteSettings: SiteSettingsGroq
+};
 
 export type SectionGroq =
   | HeroGroq
