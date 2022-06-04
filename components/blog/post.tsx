@@ -1,4 +1,4 @@
-import { PortableText } from '@portabletext/react';
+import { PortableText, PortableTextMarkComponentProps } from '@portabletext/react';
 import Link from 'next/link';
 import { PostGroq } from '../../lib/sanity-queries';
 import {
@@ -8,6 +8,7 @@ import {
 import Sections from '../sections/sections';
 import Author from './author';
 import InlineImage from './inlineImage';
+import internalLink from '../../shared/internal-link';
 
 interface Props {
   post: PostGroq;
@@ -18,7 +19,14 @@ function Post({ post }: Props) {
     types: {
       image: InlineImage,
     },
+    marks: {
+      internalLink: ({ children, value }: PortableTextMarkComponentProps) => {
+        if (!value) return <a><span className='text-red'>#internal link is broken#</span> {children}</a>;
+        return <a onClick={() => internalLink(value.route, value.routeType)}>{children}</a>
+      }
+    }
   };
+
 
   let thisPostIndex: number | undefined = undefined;
   let nextPost: any | undefined = undefined;
@@ -39,7 +47,7 @@ function Post({ post }: Props) {
       <div className="w-full max-w-[800px] px-3 sm:px-[30px] mx-auto mb-10">
         <div className="pt-8 sm:pt-16">
           <div className="text-5xl font-extrabold">{post.title}</div>
-          <Author post={post} />
+          {post.author && <Author post={post} />}
         </div>
         <div className="portable-text">
           {post.body && (

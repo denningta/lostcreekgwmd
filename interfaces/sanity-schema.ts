@@ -700,6 +700,18 @@ export interface SiteSettings extends SanityDocument {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
+
+  /**
+   * Secondary Icon — `image`
+   *
+   * A secondary icon for the site
+   */
+  secondaryIcon?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**

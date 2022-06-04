@@ -63,9 +63,9 @@ function RequestForm({ data }: Props) {
   };
 
   return (
-    <div className="flex justify-center w-full max-w-primary-col mx-auto">
+    <div className="flex justify-center w-full max-w-primary-col mx-auto mb-16">
       <div className="w-full max-w-[800px] mx-auto">
-        <div className='portable-text mb-10'>
+        <div className='portable-text mb-10 px-4'>
           {data.info && <PortableText value={data.info} />}
         </div>
         <div>

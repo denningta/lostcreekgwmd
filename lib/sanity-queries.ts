@@ -266,13 +266,20 @@ export type PostCardGroq = {
 export type PostListGroq = PostCardGroq[];
 
 export const postQuery = groq`
-  *[_type == 'post' && slug.current == $slug]{
+ *[_type == 'post' && slug.current == $slug]{
     ...,
     body[]{
       ...,
       _type == "image" => {
         ...,
         asset->
+      },
+      markDefs[]{
+        ...,
+        _type == "internalLink" => {
+          "route": @.reference->slug.current,
+          "routeType": @.reference->_type
+        }
       }
     },
     author->,
@@ -295,7 +302,7 @@ export const postQuery = groq`
         slug
       }
     }[0]
-  }[0]
+}[0]
 `;
 
 export type PostGroq = Omit<

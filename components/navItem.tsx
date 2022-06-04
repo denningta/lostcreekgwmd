@@ -8,6 +8,7 @@ import { FaChartBar, FaExternalLinkSquareAlt, FaChevronRight } from 'react-icons
 import { BsChatSquareQuoteFill, BsQuestionCircleFill } from 'react-icons/bs';
 import router from 'next/router';
 import SubNavItem from './subNavItem';
+import internalLink from '../shared/internal-link';
 
 interface Props {
   navItem: NavItemGroq;
@@ -31,11 +32,7 @@ function NavItem({ navItem, className = '' }: Props) {
     if (navItem.subNavItems) {
       setShowSubNavItems(!showSubNavItems);
     } else {
-      let route: string = '';
-      navItem.routeType === 'post' 
-        ? route = 'blog/' + navItem.route 
-        : route = navItem.route;
-      router.push(navItem.route === 'root' ? '/' : '/' + route);
+      internalLink(navItem.route, navItem.routeType);
     }
   }
 

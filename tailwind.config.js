@@ -65,6 +65,9 @@ module.exports = {
       maxWidth: {
         'primary-col': '1256px',
       },
+      width: {
+        'primary-col': '1256px',
+      },
       animation: {
         'spin-slow': 'spin 3s linear infinite',
       },

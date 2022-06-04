@@ -18,6 +18,15 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'secondaryIcon',
+      title: 'Secondary Icon',
+      description: 'A secondary icon for the site',
+      type: 'image',
+      options: {
+        hotspot: true,
+      }
     }
   ]
 }

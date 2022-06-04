@@ -9,7 +9,7 @@ interface Props {
 function AuthorComponent({ post }: Props) {
   return (
     <div className="flex items-center mt-6 text-sm">
-      {post.author.image && (
+      {post.author && post.author.image && (
         <div className="w-[60px] h-[60px]  mr-4">
           <Image
             className="rounded-full overflow-clip"

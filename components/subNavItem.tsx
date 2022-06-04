@@ -2,6 +2,7 @@ import Link from "next/link";
 import router from "next/router";
 import { useState } from "react";
 import { NavItemGroq } from "../lib/sanity-queries";
+import internalLink from "../shared/internal-link";
 
 interface Props {
   title: string;
@@ -21,11 +22,7 @@ function SubNavItem({ title, route, routeType }: Props) {
   }
 
   const handleClick = () => {
-      let r: string = '';
-      routeType === 'post' 
-        ? r = '/blog/' + route 
-        : r = route;
-      router.push(route === 'root' ? '/' : '/' + r);
+      internalLink(route, routeType);
   }
 
   return (

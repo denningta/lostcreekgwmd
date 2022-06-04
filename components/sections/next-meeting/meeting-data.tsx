@@ -11,14 +11,10 @@ interface Props {
   info: (SanityBlock & {
     _key: string;
   })[] | undefined;
+  infoExpanded: boolean
 }
 
-function MeetingData({ meeting, date, location, info }: Props) {
-  const [displayDialog, setDisplayDialog] = useState(false);
-  
-  const openDialog = () => {
-    setDisplayDialog(true);
-  }
+function MeetingData({ meeting, date, location, info, infoExpanded = false }: Props) {
 
   return (
     <div className="pt-3 pb-4 px-4">
@@ -63,10 +59,9 @@ function MeetingData({ meeting, date, location, info }: Props) {
             <div className="mr-4 text-xl">
               <BsFillInfoCircleFill />
             </div>
-            <div className="grow truncate max-h-[24px]">
+            <div className={`grow truncate ${infoExpanded ? 'max-h-fit' : 'max-h-[24px]'}`}>
               <PortableText value={info} />
             </div>
-            <div className="text-3xl cursor-pointer" onClick={() => openDialog()}><MdExpandMore /></div>
           </div>
         }
     </div>
