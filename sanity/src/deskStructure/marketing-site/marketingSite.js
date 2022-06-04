@@ -2,15 +2,13 @@ import S from '@sanity/desk-tool/structure-builder'
 import { GoGlobe } from 'react-icons/go';
 import { SiMarketo } from 'react-icons/si';
 import { MdOutlineCallToAction } from 'react-icons/md';
-import { FaProjectDiagram } from 'react-icons/fa';
-import { GiFootprint } from 'react-icons/gi';
 import { FaThList } from 'react-icons/fa';
 
-export default S.listItem().title('Marketing Site').icon(GoGlobe)
+export default S.listItem().title('Website').icon(GoGlobe)
 .child(
-  S.list().title('Marketing Site')
+  S.list().title('Website')
     .items([
-      S.listItem().title('Landing Pages').icon(SiMarketo)
+      S.listItem().title('Pages').icon(SiMarketo)
         .schemaType('landingPage')
         .child(S.documentTypeList('landingPage').title('Landing Pages')),
       S.listItem().title('Sections by Category').icon(FaThList)

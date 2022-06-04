@@ -3,6 +3,7 @@ import siteSettings from './siteSettings';
 import marketingSite from './marketing-site/marketingSite';
 import blog from './blog/blog';
 import { BsFillCalendarWeekFill } from 'react-icons/bs';
+import { AiFillMessage } from 'react-icons/ai';
 
 // React-icon https://react-icons.github.io/react-icons
 
@@ -32,17 +33,28 @@ const hiddenDocTypes = listItem => ![
     'form',
     'series',
     'introduction',
+    'contactMessage',
+    'reportMessage',
+    'requestMessage',
+    'navItemList',
+    'customHome',
+    'nextMeeting'
   ].includes(listItem.getId())
 
 export default () =>
   S.list()
     .title('Base')
     .items([
-      S.listItem().title('Ground Water Metings').icon(BsFillCalendarWeekFill)
-      .child(S.editor().schemaType('nextMeeting').documentId('nextMeeting').title('Meetings')),
-      siteSettings,
+      S.listItem().title('Meetings').icon(BsFillCalendarWeekFill)
+        .child(S.editor().schemaType('nextMeeting').documentId('nextMeeting').title('Meetings')),
+      S.listItem().title('Messages').icon(AiFillMessage)
+        .child(S.list().title('Messages').items([
+          S.listItem().title('Contact Messages').child(S.documentTypeList('contactMessage')),
+          S.listItem().title('Water Level Verification Messages').child(S.documentTypeList('requestMessage')),
+          S.listItem().title('Violation Report Messages').child(S.documentTypeList('reportMessage')),
+        ])),
       marketingSite,
       blog,
-      ...S.documentTypeListItems()
-        .filter(hiddenDocTypes)
+      siteSettings,
+      ...S.documentTypeListItems().filter(hiddenDocTypes)
     ])
