@@ -15,11 +15,13 @@ function PostCard({ post }: Props) {
       <div className="bg-neutral-800 rounded-lg overflow-clip cursor-pointer shadow-xl  transition ease-in-out hover:scale-[1.01]">
         <div className="flex flex-col p-6 h-full">
           <div className="-mx-6 -mt-6">
-            <Image
-              width={1240}
-              height={540}
-              src={imageBuilder(post.mainImage).width(1240).height(540).url()}
-            />
+            {post.mainImage &&
+              <Image
+                width={1240}
+                height={540}
+                src={imageBuilder(post.mainImage).width(1240).height(540).url()}
+              />
+            }
           </div>
           <div className="flex pt-4 text-primary-300">
             {post.categories.map((category) => (
@@ -32,7 +34,7 @@ function PostCard({ post }: Props) {
           <div className="grow mt-4 opacity-60">
             <PortableText value={post.excerpt} />
           </div>
-          <Author post={post}></Author>
+          {post.author && <Author post={post}></Author>}
         </div>
       </div>
     </Link>
