@@ -28,7 +28,7 @@ export default {
     {
       name: 'createdAt',
       title: 'Submitted At',
-      type: 'datetime',
+      type: 'date',
       readOnly: true,
     },
     {
@@ -42,6 +42,15 @@ export default {
           {title: 'Resolved', value: 'resolved'}
         ]
       }
+    }
+  ],
+  orderings: [
+    {
+      title: 'Submitted At',
+      name: 'createdAtDesc',
+      by: [
+        {field: 'createdAt', direction: 'desc'}
+      ]
     }
   ],
   initialValue: {

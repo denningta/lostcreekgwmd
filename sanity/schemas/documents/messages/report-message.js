@@ -28,7 +28,7 @@ export default {
     {
       name: 'createdAt',
       title: 'Submitted At',
-      type: 'datetime',
+      type: 'date',
       readOnly: true,
     },
     {

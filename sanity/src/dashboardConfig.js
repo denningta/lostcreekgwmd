@@ -10,7 +10,7 @@ export default {
       name: 'document-list',
       options: {
         title: 'Recent Messages',
-        order: '_updatedAt desc',
+        order: 'createdAt desc',
         types: ['contactMessage', 'reportMessage', 'requestMessage'],
         limit: 10
       },

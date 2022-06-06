@@ -49,9 +49,9 @@ export default () =>
         .child(S.editor().schemaType('nextMeeting').documentId('nextMeeting').title('Meetings')),
       S.listItem().title('Messages').icon(AiFillMessage)
         .child(S.list().title('Messages').items([
-          S.listItem().title('Contact Messages').child(S.documentTypeList('contactMessage')),
-          S.listItem().title('Water Level Verification Messages').child(S.documentTypeList('requestMessage')),
-          S.listItem().title('Violation Report Messages').child(S.documentTypeList('reportMessage')),
+          S.listItem().title('Contact Messages').child(S.documentTypeList('contactMessage').defaultOrdering([{field: 'createdAt', direction: 'desc'}])),
+          S.listItem().title('Water Level Verification Messages').child(S.documentTypeList('requestMessage').defaultOrdering([{field: 'createdAt', direction: 'desc'}])),
+          S.listItem().title('Violation Report Messages').child(S.documentTypeList('reportMessage').defaultOrdering([{field: 'createdAt', direction: 'desc'}])),
         ])),
       marketingSite,
       blog,
