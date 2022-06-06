@@ -89,7 +89,7 @@ export default {
           </div>;
 
       return {
-        title: `${title} - ${new Date(createdAt)}`,
+        title: `${title} - ${new Date(createdAt).toLocaleDateString()}`,
         subtitle: `Violation Report: ${message}`,
         media: statusIcon
       }

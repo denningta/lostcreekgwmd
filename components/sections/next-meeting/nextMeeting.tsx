@@ -77,7 +77,7 @@ function NextMeeting({ data }: Props) {
                 infoExpanded={false}
               />
             </div>
-            <button className="absolute bottom-0 right-0 mr-4 mb-3 text-white text-xl bg-gray-500 hover:bg-gray-400 hover:drop-shadow px-2 py-1 rounded-lg"  onClick={openDialog}>
+            <button className="absolute top-[140px] right-0 mr-4 mb-3 text-white text-xl bg-gray-500 hover:bg-gray-400 hover:drop-shadow px-2 py-1 rounded-lg"  onClick={openDialog}>
               <MdMoreHoriz />
             </button>
           </div>

@@ -15,7 +15,7 @@ export default function Layout({ siteSettings, navItems, children }: Props) {
 
   return (
     <div className="flex">
-      <div className='flex items-center lg:hidden fixed z-50 bg-black bg-opacity-30 backdrop-blur w-full h-[60px] border-b border-white border-opacity-5'>
+      <div className='flex items-center lg:hidden fixed z-50 bg-black bg-opacity-30 backdrop-blur w-full h-[60px] border-b border-white border-opacity-5 text-white'>
         <div className='grow flex items-center'>
           <div className='flex items-center mx-5'>
             {siteSettings.secondaryIcon &&            
