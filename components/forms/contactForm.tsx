@@ -29,6 +29,8 @@ function ContactForm({ data }: Props) {
       name: target.fullname.value,
       email: target.email.value,
       message: target.message.value,
+      status: 'new',
+      createdAt: new Date().toISOString()
     };
 
     const response = await fetch('/api/messages', {

@@ -17,7 +17,8 @@
     "icon-picker",
     "@sanity/production-preview",
     "inline-svg",
-    "content-calendar"
+    "content-calendar",
+    "dashboard-widget-vercel"
   ],
   "env": {
     "development": {

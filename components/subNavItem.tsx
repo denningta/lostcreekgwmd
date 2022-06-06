@@ -30,7 +30,7 @@ function SubNavItem({ title, route, routeType }: Props) {
         onClick={handleClick}
         className={
           `pl-12 pr-6 py-4 cursor-pointer transition ease-in-out
-          ${navItemHover ? 'bg-black bg-opacity-20' : ''}`
+          ${navItemHover ? 'bg-black bg-opacity-20 text-white' : 'text-gray-300'}`
         }
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}

@@ -37,6 +37,8 @@ function RequestForm({ data }: Props) {
       requestedDate: target.date.value,
       requestedTime: target.time.value,
       comments: target.comments.value,
+      status: 'new',
+      createdAt: new Date().toISOString()
     };
 
     const response = await fetch('/api/messages', {

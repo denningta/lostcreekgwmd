@@ -9,21 +9,20 @@ export default {
     {
       name: 'document-list',
       options: {
-        title: 'Last edited documents',
+        title: 'Recent Messages',
         order: '_updatedAt desc',
+        types: ['contactMessage', 'reportMessage', 'requestMessage'],
+        limit: 10
       },
       layout: {
-        width: 'auto',
-        height: 'large'
+        width: 'medium'
       }
     },
     {
-      name: 'document-list',
-      options: {
-        title: 'Last edited posts',
-        order: '_updatedAt desc',
-        types: ['post']
+      name: 'vercel',
+      layout: {
+        width: 'full'
       }
-    }
+    },
   ]
 }

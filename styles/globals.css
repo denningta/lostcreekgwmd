@@ -20,7 +20,7 @@ a {
 
 @layer components {
   body {
-    @apply bg-neutral-900 text-white;
+    @apply bg-gray-200 text-black;
   }
 }
 
@@ -69,13 +69,13 @@ a {
 }
 
 .btn-primary {
-  @apply px-5 py-2 rounded-full transition ease-in-out bg-primary-500 hover:bg-primary-400 hover:scale-[1.02] w-fit;
+  @apply px-5 py-2 rounded-full transition ease-in-out bg-primary-500 hover:bg-primary-400 hover:scale-[1.02] w-fit text-white;
 }
 
 .form-input {
-  @apply outline-none border text-lg rounded-lg block w-full p-2.5 bg-neutral-700 border-neutral-600 placeholder-neutral-400 text-white focus:ring-primary-500 focus:border-primary-500;
+  @apply outline-none border text-lg rounded-lg block w-full p-2.5 bg-neutral-100 border-neutral-600 placeholder-neutral-400 text-white focus:ring-primary-500 focus:border-primary-500 text-black;
 }
 
 .form-label {
-  @apply block mb-2 text-lg font-medium text-gray-900 dark:text-gray-300;
+  @apply block mb-2 text-lg font-medium text-gray-900;
 }

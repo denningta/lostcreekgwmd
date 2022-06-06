@@ -88,14 +88,26 @@ function NextMeeting({ data }: Props) {
       <div 
         className="fixed top-0 bg-black bg-opacity-50 backdrop-blur z-50 w-screen h-screen flex justify-center items-center">
         <div 
-          className="flex flex-col items-center justify-center bg-neutral-600 p-4 max-h-screen drop-shadow-lg m-4 rounded">
-          <MeetingData
-                meeting="commission"
-                date={data.commissionDate}
-                location={data.commissionLocation}
-                info={data.commissionInfo}
-                infoExpanded={true}
-              />
+          className="flex flex-col items-center justify-center bg-neutral-100 p-4 max-h-screen drop-shadow-lg m-4 rounded"
+        >
+          {isActive.commission &&           
+            <MeetingData
+              meeting="commission"
+              date={data.commissionDate}
+              location={data.commissionLocation}
+              info={data.commissionInfo}
+              infoExpanded={true}
+            />
+          }
+          {isActive.lostCreek &&           
+            <MeetingData
+              meeting="lostcreek"
+              date={data.lostCreekDate}
+              location={data.lostCreekLocation}
+              info={data.lostCreekInfo}
+              infoExpanded={true}
+            />
+          }
           <button className="btn-primary mt-6" onClick={closeDialog}>Done</button>
         </div>
       </div>

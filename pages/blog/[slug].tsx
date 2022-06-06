@@ -32,8 +32,12 @@ const PostPage: NextPage<Props> = ({
 }) => {
   return (
     <Layout navItems={navItems} siteSettings={siteSettings}>
-      <Post post={post} />
-      <Footer footerData={footer} />
+      <div className="min-h-screen flex flex-col">
+        <div className="grow">
+          <Post post={post} />
+        </div>
+        <Footer footerData={footer} />
+      </div>
     </Layout>
   );
 };
