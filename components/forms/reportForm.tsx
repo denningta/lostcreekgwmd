@@ -30,7 +30,7 @@ function ContactForm({ data }: Props) {
       email: target.email.value,
       message: target.message.value,
       status: 'new',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toDateString()
     };
 
     const response = await fetch('/api/messages', {

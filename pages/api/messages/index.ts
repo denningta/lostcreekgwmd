@@ -1,8 +1,6 @@
-import { request } from 'https';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createMessage } from '../../../lib/fauna/fql-queries';
-import { createMessageOld } from '../../../lib/fauna/graphql-client';
 import client from '../../../lib/sanity-client';
+import sendNotification from './send-notification';
 
 type HandlerFunctions = { [key: string]: () => Promise<void> };
 
@@ -17,10 +15,9 @@ export default async function handler(
 
   const handlers: HandlerFunctions = {
     POST: async () => {
-      console.log(req.body);
-      // const created = await createMessage(req.body);
-      const documentCreated = await client.create(req.body).then((res) => res)
-      res.json(documentCreated);
+      const documentRes = await client.create(req.body).then((res) => res);
+      const notificationRes = sendNotification(req.body).then((res) => res);
+      res.json(documentRes);
     },
   };
 

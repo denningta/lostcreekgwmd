@@ -1263,6 +1263,20 @@ export interface ContactMessage extends SanityDocument {
    *
    */
   message?: string;
+
+  /**
+   * Submitted At — `date`
+   *
+   *
+   */
+  createdAt?: string;
+
+  /**
+   * Status — `string`
+   *
+   *
+   */
+  status?: "new" | "read" | "resolved";
 }
 
 /**
@@ -1321,6 +1335,20 @@ export interface RequestMessage extends SanityDocument {
    *
    */
   comments?: string;
+
+  /**
+   * Submitted At — `date`
+   *
+   *
+   */
+  createdAt?: string;
+
+  /**
+   * Status — `string`
+   *
+   *
+   */
+  status?: "new" | "read" | "resolved";
 }
 
 /**
@@ -1351,6 +1379,43 @@ export interface ReportMessage extends SanityDocument {
    *
    */
   message?: string;
+
+  /**
+   * Submitted At — `date`
+   *
+   *
+   */
+  createdAt?: string;
+
+  /**
+   * Status — `string`
+   *
+   *
+   */
+  status?: "new" | "read" | "resolved";
+}
+
+/**
+ * Notification Email
+ *
+ *
+ */
+export interface NotificationEmail extends SanityDocument {
+  _type: "notificationEmail";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Email — `string`
+   *
+   * Send and email to this address when a new message is received
+   */
+  email?: string;
 }
 
 export type BlockContent = Array<
@@ -1397,7 +1462,8 @@ export type Documents =
   | NextMeeting
   | ContactMessage
   | RequestMessage
-  | ReportMessage;
+  | ReportMessage
+  | NotificationEmail;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

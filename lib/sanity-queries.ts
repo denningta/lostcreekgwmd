@@ -14,6 +14,7 @@ import {
   Metrics,
   NavItem,
   NextMeeting,
+  NotificationEmail,
   Post,
   PostList,
   SanityImageAsset,
@@ -330,3 +331,19 @@ export type PostGroq = Omit<
     }[];
   };
 };
+
+// SparkPost recipients
+export const sparkPostRecipientsQuery = groq`
+  *[_type == 'notificationEmail']{
+    "address": {
+      email,
+      name
+    }
+  }
+`;
+
+export type SparkPostRecipients = {
+  [key in 'address']: {
+    [key in 'email' | 'name']: string;
+  };
+}[];
