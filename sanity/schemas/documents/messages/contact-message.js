@@ -76,8 +76,6 @@ export default {
           statusColor = 'mediumseagreen'
       }
 
-      console.log(status, statusColor)
-
       const statusIcon = 
           <div 
             style={{

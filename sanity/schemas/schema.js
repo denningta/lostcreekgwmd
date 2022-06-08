@@ -40,6 +40,7 @@ import nextMeeting from './documents/sections/next-meeting';
 import contactMessage from './documents/messages/contact-message';
 import requestMessage from './documents/messages/request-message';
 import reportMessage from './documents/messages/report-message';
+import notificationEmails from './documents/notification-email';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -79,6 +80,7 @@ export default createSchema({
     contactMessage,
     requestMessage,
     reportMessage,
+    notificationEmails,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

@@ -91,8 +91,6 @@ export default {
           statusColor = 'magenta'
       }
 
-      console.log(title, status, statusColor)
-
       const statusIcon = 
           <div 
             style={{
