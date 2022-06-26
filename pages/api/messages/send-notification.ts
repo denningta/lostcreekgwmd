@@ -6,6 +6,7 @@ const sparkPostEndpoint = process.env.SPARKPOST_ENDPOINT;
 
 export default async function sendNotification(messageData: any) {
   console.log(sparkPostToken);
+  console.log(sparkPostEndpoint);
   if (!sparkPostToken) { console.error('Env: No SparkPost token defined'); return };
   if (!sparkPostEndpoint) { console.error('Env: No SparkPost endpoint defined'); return };
 
