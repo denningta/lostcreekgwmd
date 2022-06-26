@@ -10,7 +10,10 @@ export default async function sendNotification(messageData: any) {
   if (!sparkPostToken) { console.error('Env: No SparkPost token defined'); return };
   if (!sparkPostEndpoint) { console.error('Env: No SparkPost endpoint defined'); return };
 
-  const recipients: SparkPostRecipients = await client.fetch(sparkPostRecipientsQuery);
+  console.log(client);
+  const recipients: SparkPostRecipients = await client.fetch(sparkPostRecipientsQuery)
+    .then((res) => {console.log('SANITY: ', res); return res})
+    .catch((err) => {console.log('SANITY: ', err); return err})
   
   console.log(recipients);
 
