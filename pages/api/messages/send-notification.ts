@@ -4,39 +4,22 @@ import { SparkPostRecipients, sparkPostRecipientsQuery } from "../../../lib/sani
 const sparkPostToken = process.env.SPARKPOST_CLIENT_TOKEN;
 const sparkPostEndpoint = process.env.SPARKPOST_ENDPOINT;
 
-export default async function sendNotification(messageData: any) {
-  console.log(sparkPostToken);
-  console.log(sparkPostEndpoint);
-  if (!sparkPostToken) { console.error('Env: No SparkPost token defined'); return };
-  if (!sparkPostEndpoint) { console.error('Env: No SparkPost endpoint defined'); return };
-
-  console.log(client);
-  const recipients: SparkPostRecipients = await client.fetch(sparkPostRecipientsQuery)
+async function getRecipients(): Promise<SparkPostRecipients> {
+  return await client.fetch(sparkPostRecipientsQuery)
     .then((res) => {console.log('SANITY: ', res); return res})
     .catch((err) => {console.log('SANITY: ', err); return err})
-  
-  console.log(recipients);
+}
 
-  const sparkPostBody = {
-    'content': {
-      'template_id': 'message-notification',
-      'use_draft_template': false
-    },
-    'substitution_data': {
-      ...messageData,
-      userEmail: messageData.email
-    },
-    'recipients': recipients
-  }
+async function triggerSparkPostEmail(sparkPostBody: any) {
+  if (!sparkPostToken) { return Promise.reject('Env: No SparkPost token defined'); };
+  if (!sparkPostEndpoint) { return Promise.reject('Env: No SparkPost endpoint defined'); };
 
-  console.log(JSON.stringify(sparkPostBody))
-
-  const response = await fetch(
+  return await fetch(
     sparkPostEndpoint + '/transmissions/10',
     {
       method: 'POST',
       headers: {
-        'Authorization': sparkPostToken
+        "Authorization": sparkPostToken
       },
       body: JSON.stringify(sparkPostBody)
     }
@@ -44,6 +27,55 @@ export default async function sendNotification(messageData: any) {
     console.log(res);
     return res;
   });
+}
 
-  return response;
+export default async function sendNotification(messageData: any) {
+
+
+  // const recipients: SparkPostRecipients = await client.fetch(sparkPostRecipientsQuery)
+  //   .then((res) => {console.log('SANITY: ', res); return res})
+  //   .catch((err) => {console.log('SANITY: ', err); return err})
+
+  await getRecipients().then(async (recipients) => {
+    console.log(recipients);
+
+    const sparkPostBody = {
+      'content': {
+        'template_id': 'message-notification',
+        'use_draft_template': false
+      },
+      'substitution_data': {
+        ...messageData,
+        userEmail: messageData.email
+      },
+      'recipients': recipients
+    }
+
+    return await triggerSparkPostEmail(sparkPostBody)
+      .then(res => res)
+      .catch(err => err)
+
+  }).catch(error => {
+    console.log(error)
+    return Promise.reject(error)
+  });
+
+
+  // console.log(JSON.stringify(sparkPostBody))
+
+  // const response = await fetch(
+  //   sparkPostEndpoint + '/transmissions/10',
+  //   {
+  //     method: 'POST',
+  //     headers: {
+  //       'Authorization': sparkPostToken
+  //     },
+  //     body: JSON.stringify(sparkPostBody)
+  //   }
+  // ).then(res => {
+  //   console.log(res);
+  //   return res;
+  // });
+
+  // return response;
 }

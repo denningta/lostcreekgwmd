@@ -16,7 +16,7 @@ export default async function handler(
   const handlers: HandlerFunctions = {
     POST: async () => {
       const documentRes = await client.create(req.body).then((res) => res);
-      const notificationRes = sendNotification(req.body).then((res) => res);
+      const notificationRes = await sendNotification(req.body).then((res) => res);
       res.json(documentRes);
     },
   };
